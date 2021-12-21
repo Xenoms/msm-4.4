@@ -41,7 +41,7 @@ send_msg(){
 send_file(){
 	print "Sending file..." green
 	curl -F chat_id="${chat_id}" \
-		-F caption="Build Berhasil! | New-Nobita | #funproject" \
+		-F caption="Build Berhasil! | RolleSx | #funproject" \
 		-F document=@"${1}" \
 		 https://api.telegram.org/bot"${bot_token}"/sendDocument
 }
@@ -84,7 +84,7 @@ gen_toolchain(){
 		git clone --depth=1 https://github.com/chips-project/aarch64-elf gcc64
 		git clone --depth=1 https://github.com/chips-project/arm-eabi gcc32
 	fi
-		git clone --depth=1 https://github.com/irfannim/AnyKernel3 -b nobita anykernel
+		git clone --depth=1 https://github.com/Xenoms/AnyKernel33 -b master anykernel
 }
 
 build(){
