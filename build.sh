@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export KERNELNAME=Nobita
+export KERNELNAME=RolleStrix
 
 export LOCALVERSION=beta
 
-export KBUILD_BUILD_USER=irfannim
+export KBUILD_BUILD_USER=Xenoms
 
-export KBUILD_BUILD_HOST=funproject
+export KBUILD_BUILD_HOST=#funproject
 
 export TOOLCHAIN=clang
 
