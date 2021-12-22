@@ -3217,7 +3217,6 @@ static void binder_transaction(struct binder_proc *proc,
 			fp = to_flat_binder_object(hdr);
 			ret = binder_translate_binder(fp, t, thread);
 			if (ret < 0) {
-				node = binder_new_node(proc, fp->binder, f
 				return_error = BR_FAILED_REPLY;
 				return_error_param = ret;
 				return_error_line = __LINE__;
