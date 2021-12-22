@@ -79,7 +79,7 @@ gen_toolchain(){
 	print "Cloning toolchain files..." green
 	if [ $TOOLCHAIN == "clang" ]
 	then
-		git clone --depth=1 https://github.com/NusantaraDevs/DragonTC clang
+		git clone --depth=1 https://github.com/GhostMaster69-dev/Cosmic-Clang clang
 	else
 		git clone --depth=1 https://github.com/chips-project/aarch64-elf gcc64
 		git clone --depth=1 https://github.com/chips-project/arm-eabi gcc32
@@ -95,9 +95,9 @@ build(){
 
 	if [ $2 == "-oldcam" ]
 	then
-		make_build "${1}_defconfig"
+		make_build "${1}-perf_defconfig"
 	else
-		make_build "${1}_defconfig"
+		make_build "${1}-perf_defconfig"
 	fi
 		mkzip "$KERNELNAME-$LOCALVERSION-${1}${2}${3}-$DATE.zip"
 }
