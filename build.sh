@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export KERNELNAME=Nobita
+export KERNELNAME=Rollestrix
 
-export LOCALVERSION=beta
+export LOCALVERSION=
 
-export KBUILD_BUILD_USER=irfannim
+export KBUILD_BUILD_USER=Devil_Rush°
 
 export KBUILD_BUILD_HOST=funproject
 
