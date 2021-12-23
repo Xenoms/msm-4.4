@@ -10,11 +10,14 @@ make_build(){
 		make O=out ARCH=arm64 $1
 		make -j$(nproc --all) O=out \
 				ARCH=arm64 \
-                                CC=clang \
-                                CLANG_TRIPLE=aarch64-linux-gnu- \
-                                CROSS_COMPILE=aarch64-linux-gnu- \
-                                CROSS_COMPILE_ARM32=arm-linux-gnueabi
-
+				CC=clang \
+				AR=llvm-ar \
+				NM=llvm-nm \
+				OBJCOPY=llvm-objcopy \
+				OBJDUMP=llvm-objdump \
+				STRIP=llvm-strip \
+				CROSS_COMPILE=aarch64-linux-gnu- \
+				CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 	else
 		export CROSS_COMPILE=$(pwd)/gcc64/bin/aarch64-elf-
 		export CROSS_COMPILE_ARM32=$(pwd)/gcc32/bin/arm-eabi-
@@ -38,7 +41,7 @@ send_msg(){
 send_file(){
 	print "Sending file..." green
 	curl -F chat_id="${chat_id}" \
-		-F caption="Build Berhasil! | Rollestrix | #funproject" \
+		-F caption="Build Berhasil! | RolleStrix | #funproject" \
 		-F document=@"${1}" \
 		 https://api.telegram.org/bot"${bot_token}"/sendDocument
 }
@@ -46,8 +49,8 @@ send_file(){
 mkzip(){
 	print "Generate zip file..." green
 
-	if [ -f $(pwd)/out/arch/arm64/boot/Image.gz ]; then
-		cp $(pwd)/out/arch/arm64/boot/Image.gz  anykernel/kernel
+	if [ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]; then
+		cp $(pwd)/out/arch/arm64/boot/Image.gz-dtb  anykernel/kernel
 		cd anykernel
 		zip -r9 ../$1 * -x .git README.md *placeholder
 		cd ..
@@ -76,7 +79,7 @@ gen_toolchain(){
 	print "Cloning toolchain files..." green
 	if [ $TOOLCHAIN == "clang" ]
 	then
-		git clone --depth=1 https://github.com/NusantaraDevs/clang -b dev/10.0 clang
+		git clone --depth=1 https://github.com/GengKapak/GengKapak-clang clang
 	else
 		git clone --depth=1 https://github.com/chips-project/aarch64-elf gcc64
 		git clone --depth=1 https://github.com/chips-project/arm-eabi gcc32
