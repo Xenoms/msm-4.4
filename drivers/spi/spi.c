@@ -1888,7 +1888,6 @@ struct spi_master *devm_spi_alloc_master(struct device *dev, unsigned int size)
 
 	master = spi_alloc_master(dev, size);
 	if (master) {
-		master->devm_allocated = true;
 		*ptr = master;
 		devres_add(dev, ptr);
 	} else {
@@ -2119,7 +2118,6 @@ void spi_unregister_master(struct spi_master *master)
 	/* Release the last reference on the master if its driver
 	 * has not yet been converted to devm_spi_alloc_master().
 	 */
-	if (!master->devm_allocated)
 		put_device(&master->dev);
 
 	if (IS_ENABLED(CONFIG_SPI_DYNAMIC))
