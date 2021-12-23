@@ -2339,7 +2339,8 @@ static unsigned long zs_shrinker_scan(struct shrinker *shrinker,
 	unsigned long pages_freed;
 	struct zs_pool *pool = container_of(shrinker, struct zs_pool,
 			shrinker);
-         pages_freed = pool->stats.pages_compacted;
+			
+    pages_freed = pool->stats.pages_compacted;  
 	/*
 	 * Compact classes and calculate compaction delta.
 	 * Can run concurrently with a manually triggered
