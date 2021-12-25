@@ -41,7 +41,7 @@ send_msg(){
 send_file(){
 	print "Sending file..." green
 	curl -F chat_id="${chat_id}" \
-		-F caption="Build Berhasil! | RolleStrix | #funproject" \
+		-F caption="Build Succes! | RolleStrix | #funproject" \
 		-F document=@"${1}" \
 		 https://api.telegram.org/bot"${bot_token}"/sendDocument
 }
@@ -49,14 +49,14 @@ send_file(){
 mkzip(){
 	print "Generate zip file..." green
 
-	if [ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]; then
-		cp $(pwd)/out/arch/arm64/boot/Image.gz-dtb anykernel/Image.gz-dtb
+	if [ -f $(pwd)/out/arch/arm64/boot/Image.gz ]; then
+		cp $(pwd)/out/arch/arm64/boot/Image.gz  anykernel
 		cd anykernel
 		zip -r9 ../$1 * -x .git README.md *placeholder
 		cd ..
 		send_file $1
 	else
-		send_msg "Build Gagal!, Harap Cek lagi"
+		send_msg "Build Failed!, Please Check Again"
 		print "Build error !" red
 		exit 1
 	fi
@@ -79,7 +79,7 @@ gen_toolchain(){
 	print "Cloning toolchain files..." green
 	if [ $TOOLCHAIN == "clang" ]
 	then
-		git clone --depth=1 https://github.com/NusantaraDevs/clang -b dev/10.0 clang
+		git clone --depth=1 https://github.com/kdrag0n/proton-clang clang
 	else
 		git clone --depth=1 https://github.com/chips-project/aarch64-elf gcc64
 		git clone --depth=1 https://github.com/chips-project/arm-eabi gcc32
